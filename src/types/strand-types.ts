@@ -28,7 +28,7 @@ export type Alphabet =
 
 export type MessageType = "info" | "correct" | "spangram";
 
-export type LetterType = {
+export type StrandNodeType = {
   alphabet: Alphabet;
   id: string;
   row: number;

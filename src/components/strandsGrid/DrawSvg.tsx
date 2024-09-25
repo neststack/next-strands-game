@@ -1,14 +1,17 @@
+import { StrandNodeType } from "@/types";
+
 interface DrawSvgProps {
   column: number;
   row: number;
-  size: number;
+  buttonSize: number;
+  temporaryPlot: StrandNodeType[];
 }
 
-const DrawSvg = ({ column, row, size }: DrawSvgProps) => {
+const DrawSvg = ({ buttonSize, column, row }: DrawSvgProps) => {
   //-----------------------------------
   // Computed
-  const height = row * size + (row - 1) * 12;
-  const width = column * size + (column - 1) * 12;
+  const height = row * buttonSize + (row - 1) * 12;
+  const width = column * buttonSize + (column - 1) * 12;
 
   return (
     <svg
@@ -21,8 +24,8 @@ const DrawSvg = ({ column, row, size }: DrawSvgProps) => {
         points="0,0 50,150 100,75 150,50 200,140 250,140"
         style={{
           fill: "none",
-          stroke: "green",
-          strokeWidth: "3"
+          stroke: "gray",
+          strokeWidth: "10"
         }}
       />
       Sorry, your browser does not support inline SVG.

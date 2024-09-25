@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Alphabet, LetterType, MessageType } from "@/types";
+import { Alphabet, MessageType, StrandNodeType } from "@/types";
 
 interface GridState {
   alphabets: Alphabet[][];
@@ -7,10 +7,11 @@ interface GridState {
     found: boolean;
     isSpangram: boolean;
     word: string;
+    plot: StrandNodeType[];
   }[];
   row: number;
   column: number;
-  currentWord: LetterType[];
+  currentWord: StrandNodeType[];
   isMakingWord: boolean;
   displayMessage: {
     message: string;
@@ -29,10 +30,154 @@ const initialState: GridState = {
   ],
   column: 4,
   correctWords: [
-    { found: false, isSpangram: false, word: "banana" },
-    { found: false, isSpangram: false, word: "apple" },
-    { found: false, isSpangram: false, word: "lime" },
-    { found: false, isSpangram: true, word: "fruit" }
+    {
+      found: false,
+      isSpangram: false,
+      plot: [
+        {
+          alphabet: "b",
+          column: 0,
+          id: "0-0",
+          row: 0
+        },
+        {
+          alphabet: "a",
+          column: 1,
+          id: "0-1",
+          row: 0
+        },
+        {
+          alphabet: "n",
+          column: 0,
+          id: "1-0",
+          row: 1
+        },
+        {
+          alphabet: "a",
+          column: 1,
+          id: "1-1",
+          row: 1
+        },
+        {
+          alphabet: "n",
+          column: 2,
+          id: "0-2",
+          row: 0
+        },
+        {
+          alphabet: "a",
+          column: 3,
+          id: "0-3",
+          row: 0
+        }
+      ],
+      word: "banana"
+    },
+    {
+      found: false,
+      isSpangram: false,
+      plot: [
+        {
+          alphabet: "a",
+          column: 2,
+          id: "4-2",
+          row: 4
+        },
+        {
+          alphabet: "p",
+          column: 3,
+          id: "4-3",
+          row: 4
+        },
+        {
+          alphabet: "p",
+          column: 3,
+          id: "3-3",
+          row: 3
+        },
+        {
+          alphabet: "l",
+          column: 3,
+          id: "2-3",
+          row: 2
+        },
+        {
+          alphabet: "e",
+          column: 2,
+          id: "3-2",
+          row: 3
+        }
+      ],
+      word: "apple"
+    },
+    {
+      found: false,
+      isSpangram: false,
+      plot: [
+        {
+          alphabet: "l",
+          column: 1,
+          id: "4-1",
+          row: 4
+        },
+        {
+          alphabet: "i",
+          column: 0,
+          id: "3-0",
+          row: 3
+        },
+        {
+          alphabet: "m",
+          column: 0,
+          id: "4-0",
+          row: 4
+        },
+        {
+          alphabet: "e",
+          column: 1,
+          id: "3-1",
+          row: 3
+        }
+      ],
+      word: "lime"
+    },
+    {
+      found: false,
+      isSpangram: true,
+      plot: [
+        {
+          alphabet: "f",
+          column: 0,
+          id: "2-0",
+          row: 2
+        },
+        {
+          alphabet: "r",
+          column: 1,
+          id: "2-1",
+          row: 2
+        },
+        {
+          alphabet: "u",
+          column: 2,
+          id: "2-2",
+          row: 2
+        },
+        {
+          alphabet: "i",
+          column: 2,
+          id: "1-2",
+          row: 1
+        },
+        {
+          alphabet: "t",
+          column: 3,
+          id: "1-3",
+          row: 1
+        }
+      ],
+      word: "fruit"
+    }
   ],
   currentWord: [],
   displayMessage: {
@@ -66,7 +211,7 @@ const gridSlice = createSlice({
     },
 
     // updateCurrentWord
-    updateCurrentWord(state, action: PayloadAction<LetterType>) {
+    updateCurrentWord(state, action: PayloadAction<StrandNodeType>) {
       state.currentWord.push(action.payload);
     },
 

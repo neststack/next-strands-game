@@ -4,7 +4,7 @@ import {
   updateDisplayMessage
 } from "@/store/features/grid/grid-slice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { LetterType, MessageType } from "@/types";
+import { MessageType, StrandNodeType } from "@/types";
 
 const useGrid = () => {
   const alphabets = useAppSelector(state => state.grid.alphabets);
@@ -19,7 +19,7 @@ const useGrid = () => {
 
   //-----------------------------------
   // Functions
-  const updateCurrentWordHandler = (letter: LetterType) => {
+  const updateCurrentWordHandler = (letter: StrandNodeType) => {
     dispatch(updateCurrentWord(letter));
   };
 
