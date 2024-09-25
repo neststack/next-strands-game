@@ -8,6 +8,7 @@ import StrandButton from "./StrandButton";
 
 // Constants
 const BUTTON_SIZE = 44;
+const BUTTON_BLOCK_SIZE = 54;
 
 const Grid = () => {
   const {
@@ -91,7 +92,6 @@ const Grid = () => {
   };
 
   const validateWordHandler = () => {
-    console.log("validateWordHandler", { correctPlotStrings, currentWord });
     // if the current word is not in the correct words list, reset the current word
     if (
       !correctPlotStrings.includes(currentWord.map(node => node.id).join("_"))
@@ -112,8 +112,6 @@ const Grid = () => {
         correctWord =>
           correctWord.plotString === currentWord.map(node => node.id).join("_")
       );
-
-      console.log("Correct", { correctWord });
 
       if (!correctWord) return;
 
@@ -162,17 +160,18 @@ const Grid = () => {
       >
         {displayMessage.message}
       </h1>
-      <div className="flex flex-col items-center justify-between gap-3 relative">
+      <div className="flex flex-col items-center justify-between relative">
         {alphabets.map((row, i) => (
           <div
             key={i}
             className="flex 
-             justify-between items-center gap-3"
+             justify-between items-center"
           >
             {row.map((alphabet, j) => (
               <StrandButton
                 key={`${i}-${j}`}
                 alphabet={alphabet}
+                blockSize={BUTTON_BLOCK_SIZE}
                 buttonSize={BUTTON_SIZE}
                 onClick={() =>
                   buttonClickHandler({
@@ -187,6 +186,7 @@ const Grid = () => {
           </div>
         ))}
         <DrawSvg
+          blockSize={BUTTON_BLOCK_SIZE}
           buttonSize={BUTTON_SIZE}
           column={column}
           currentPlot={currentWord}
@@ -197,6 +197,7 @@ const Grid = () => {
           .map((correctWord, i) => (
             <DrawSvg
               key={i}
+              blockSize={BUTTON_BLOCK_SIZE}
               buttonSize={BUTTON_SIZE}
               column={column}
               currentPlot={correctWord.plot}

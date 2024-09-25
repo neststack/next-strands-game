@@ -4,20 +4,34 @@ interface StrandButtonProps {
   alphabet: Alphabet;
   onClick: () => void;
   buttonSize: number;
+  blockSize: number;
 }
 
-const StrandButton = ({ alphabet, buttonSize, onClick }: StrandButtonProps) => {
+const StrandButton = ({
+  alphabet,
+  blockSize,
+  buttonSize,
+  onClick
+}: StrandButtonProps) => {
   return (
-    <button
-      className={`flex justify-center items-center w-[${buttonSize}px] h-[${buttonSize}px] rounded-full hover:shadow-lg shadow-black/50 uppercase text-xl transition-all duration-50 ease-in-out`}
+    <div
+      className="flex justify-center items-center"
       style={{
-        height: `${buttonSize}px`,
-        width: `${buttonSize}px`
+        height: `${blockSize}px`,
+        width: `${blockSize}px`
       }}
-      onClick={onClick}
     >
-      {alphabet}
-    </button>
+      <button
+        className={`flex justify-center items-center w-[${buttonSize}px] h-[${buttonSize}px] rounded-full hover:shadow-lg shadow-black/50 uppercase text-xl transition-all duration-50 ease-in-out`}
+        style={{
+          height: `${buttonSize}px`,
+          width: `${buttonSize}px`
+        }}
+        onClick={onClick}
+      >
+        {alphabet}
+      </button>
+    </div>
   );
 };
 

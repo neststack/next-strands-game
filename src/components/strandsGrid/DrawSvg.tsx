@@ -4,11 +4,13 @@ interface DrawSvgProps {
   column: number;
   row: number;
   buttonSize: number;
+  blockSize: number;
   currentPlot: StrandNodeType[];
   type?: "current" | "correct" | "spangram";
 }
 
 const DrawSvg = ({
+  blockSize,
   buttonSize,
   column,
   currentPlot,
@@ -17,15 +19,13 @@ const DrawSvg = ({
 }: DrawSvgProps) => {
   //-----------------------------------
   // Computed
-  const height = row * buttonSize + (row - 1) * 12;
-  const width = column * buttonSize + (column - 1) * 12;
+  const height = row * blockSize;
+  const width = column * blockSize;
   // Generate polyline points string from currentPlot
   const polylinePoints = currentPlot
     .map(
       node =>
-        `${(node.column + 1) * buttonSize + (node.column - 2) * 12},${
-          (node.row + 1) * buttonSize + (node.row - 2) * 12
-        }`
+        `${blockSize / 2 + node.column * blockSize},${blockSize / 2 + node.row * blockSize}`
     )
     .join(" ");
   const color =
@@ -51,8 +51,8 @@ const DrawSvg = ({
       {currentPlot.map((node, i) => (
         <circle
           key={i}
-          cx={(node.column + 1) * buttonSize + (node.column - 2) * 12}
-          cy={(node.row + 1) * buttonSize + (node.row - 2) * 12}
+          cx={blockSize / 2 + node.column * blockSize}
+          cy={blockSize / 2 + node.row * blockSize}
           fill={color}
           r={buttonSize / 2}
         />
