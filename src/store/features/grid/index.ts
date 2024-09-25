@@ -1,1 +1,3 @@
-export * from "./grid-slice";
+import useGrid from "./grid";
+
+export default useGrid;
