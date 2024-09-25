@@ -4,5 +4,5 @@
   },
   "editor.formatOnSave": true,
   "eslint.format.enable": true,
-  "cSpell.words": ["tailwindcss", "reduxjs"]
+  "cSpell.words": ["tailwindcss", "reduxjs", "spangram"]
 }
