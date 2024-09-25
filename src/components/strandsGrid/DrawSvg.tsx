@@ -4,14 +4,32 @@ interface DrawSvgProps {
   column: number;
   row: number;
   buttonSize: number;
-  temporaryPlot: StrandNodeType[];
+  currentPlot: StrandNodeType[];
+  type?: "current" | "correct" | "spangram";
 }
 
-const DrawSvg = ({ buttonSize, column, row }: DrawSvgProps) => {
+const DrawSvg = ({
+  buttonSize,
+  column,
+  currentPlot,
+  row,
+  type = "current"
+}: DrawSvgProps) => {
   //-----------------------------------
   // Computed
   const height = row * buttonSize + (row - 1) * 12;
   const width = column * buttonSize + (column - 1) * 12;
+  // Generate polyline points string from currentPlot
+  const polylinePoints = currentPlot
+    .map(
+      node =>
+        `${(node.column + 1) * buttonSize + (node.column - 2) * 12},${
+          (node.row + 1) * buttonSize + (node.row - 2) * 12
+        }`
+    )
+    .join(" ");
+  const color =
+    type === "correct" ? "skyblue" : type === "spangram" ? "orange" : "gray";
 
   return (
     <svg
@@ -20,14 +38,25 @@ const DrawSvg = ({ buttonSize, column, row }: DrawSvgProps) => {
       width={width}
       xmlns="http://www.w3.org/2000/svg"
     >
-      <polyline
-        points="0,0 50,150 100,75 150,50 200,140 250,140"
-        style={{
-          fill: "none",
-          stroke: "gray",
-          strokeWidth: "10"
-        }}
-      />
+      {currentPlot.length > 0 && (
+        <polyline
+          points={polylinePoints}
+          style={{
+            fill: "none",
+            stroke: color,
+            strokeWidth: "10"
+          }}
+        />
+      )}
+      {currentPlot.map((node, i) => (
+        <circle
+          key={i}
+          cx={(node.column + 1) * buttonSize + (node.column - 2) * 12}
+          cy={(node.row + 1) * buttonSize + (node.row - 2) * 12}
+          fill={color}
+          r={buttonSize / 2}
+        />
+      ))}
       Sorry, your browser does not support inline SVG.
     </svg>
   );

@@ -9,7 +9,7 @@ interface StrandButtonProps {
 const StrandButton = ({ alphabet, buttonSize, onClick }: StrandButtonProps) => {
   return (
     <button
-      className={`w-[${buttonSize}px] h-[${buttonSize}px] rounded-full hover:shadow-lg shadow-black/50 uppercase text-xl transition-all duration-50 ease-in-out`}
+      className={`flex justify-center items-center w-[${buttonSize}px] h-[${buttonSize}px] rounded-full hover:shadow-lg shadow-black/50 uppercase text-xl transition-all duration-50 ease-in-out`}
       style={{
         height: `${buttonSize}px`,
         width: `${buttonSize}px`

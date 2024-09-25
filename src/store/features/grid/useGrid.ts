@@ -1,4 +1,7 @@
+import { useCallback } from "react";
 import {
+  resetCurrentWord,
+  setIsComplete,
   updateCorrectWords,
   updateCurrentWord,
   updateDisplayMessage
@@ -19,22 +22,27 @@ const useGrid = () => {
 
   //-----------------------------------
   // Functions
-  const updateCurrentWordHandler = (letter: StrandNodeType) => {
-    dispatch(updateCurrentWord(letter));
+  const updateCurrentWordHandler = (strandNode: StrandNodeType) => {
+    dispatch(updateCurrentWord(strandNode));
+  };
+
+  const resetCurrentWordHandler = () => {
+    dispatch(resetCurrentWord());
   };
 
   const updateCorrectWordsHandler = (word: string) => {
     dispatch(updateCorrectWords(word));
   };
 
-  const updateDisplayMessageHandler = ({
-    message,
-    type
-  }: {
-    message: string;
-    type: MessageType;
-  }) => {
-    dispatch(updateDisplayMessage({ message, type }));
+  const updateDisplayMessageHandler = useCallback(
+    ({ message, type }: { message: string; type: MessageType }) => {
+      dispatch(updateDisplayMessage({ message, type }));
+    },
+    [dispatch]
+  );
+
+  const setIsCompleteHandler = () => {
+    dispatch(setIsComplete());
   };
 
   return {
@@ -45,7 +53,9 @@ const useGrid = () => {
     displayMessage,
     isComplete,
     isMakingWord,
+    resetCurrentWordHandler,
     row,
+    setIsCompleteHandler,
     updateCorrectWordsHandler,
     updateCurrentWordHandler,
     updateDisplayMessageHandler

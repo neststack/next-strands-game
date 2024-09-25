@@ -7,6 +7,7 @@ interface GridState {
     found: boolean;
     isSpangram: boolean;
     word: string;
+    plotString: string;
     plot: StrandNodeType[];
   }[];
   row: number;
@@ -71,6 +72,7 @@ const initialState: GridState = {
           row: 0
         }
       ],
+      plotString: "0-0_0-1_1-0_1-1_0-2_0-3",
       word: "banana"
     },
     {
@@ -108,6 +110,7 @@ const initialState: GridState = {
           row: 3
         }
       ],
+      plotString: "4-2_4-3_3-3_2-3_3-2",
       word: "apple"
     },
     {
@@ -139,6 +142,7 @@ const initialState: GridState = {
           row: 3
         }
       ],
+      plotString: "4-1_3-0_4-0_3-1",
       word: "lime"
     },
     {
@@ -176,6 +180,7 @@ const initialState: GridState = {
           row: 1
         }
       ],
+      plotString: "2-0_2-1_2-2_1-2_1-3",
       word: "fruit"
     }
   ],
@@ -198,6 +203,11 @@ const gridSlice = createSlice({
       state.currentWord = [];
     },
 
+    // setIsComplete
+    setIsComplete(state) {
+      state.isComplete = true;
+    },
+
     // updateCorrectWords
     updateCorrectWords(state, action: PayloadAction<string>) {
       const word = action.payload;
@@ -212,6 +222,8 @@ const gridSlice = createSlice({
 
     // updateCurrentWord
     updateCurrentWord(state, action: PayloadAction<StrandNodeType>) {
+      if (state.isComplete) return;
+
       state.currentWord.push(action.payload);
     },
 
@@ -230,6 +242,7 @@ const gridSlice = createSlice({
 
 export const {
   resetCurrentWord,
+  setIsComplete,
   updateCorrectWords,
   updateCurrentWord,
   updateDisplayMessage
