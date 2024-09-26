@@ -148,9 +148,9 @@ const Grid = () => {
   }, [correctWords]);
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4">
+    <div className="flex flex-col items-center  justify-center gap-4">
       <h1
-        className={`uppercase h-10 text-center text-xl ${
+        className={`flex justify-center items-center uppercase h-10 text-center text-xl ${
           displayMessage.type === "correct"
             ? "text-blue-500"
             : displayMessage.type === "spangram"

@@ -15,8 +15,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  description: "Strand Game Generated using create next app",
-  title: "Strand Game | Next.js"
+  description: "Strands Game Generated using create next app",
+  title: "Strands Game | Next.js"
 };
 
 export default function RootLayout({
