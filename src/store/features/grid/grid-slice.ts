@@ -203,6 +203,11 @@ const gridSlice = createSlice({
       state.currentWord = [];
     },
 
+    // resetCurrentWord
+    resetGrid() {
+      return initialState;
+    },
+
     // setIsComplete
     setIsComplete(state) {
       state.isComplete = true;
@@ -242,6 +247,7 @@ const gridSlice = createSlice({
 
 export const {
   resetCurrentWord,
+  resetGrid,
   setIsComplete,
   updateCorrectWords,
   updateCurrentWord,

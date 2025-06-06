@@ -3,7 +3,7 @@
 import useGrid from "@/store/features/grid";
 
 const ThemeDisplay = () => {
-  const { correctWords } = useGrid();
+  const { correctWords, resetGridHandler } = useGrid();
 
   const totalWords = correctWords.length;
   const foundWords = correctWords.filter(word => word.found).length;
@@ -17,6 +17,13 @@ const ThemeDisplay = () => {
       <span>
         <b>{foundWords}</b> of <b>{totalWords}</b> theme words found.
       </span>
+      <button
+        className="bg-blue-600 hover:bg-blue-500
+           text-white font-semibold py-2 px-4 rounded"
+        onClick={resetGridHandler}
+      >
+        Reset
+      </button>
     </div>
   );
 };

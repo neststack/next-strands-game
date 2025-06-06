@@ -4,5 +4,8 @@
   },
   "editor.formatOnSave": true,
   "eslint.format.enable": true,
-  "cSpell.words": ["tailwindcss", "reduxjs", "spangram"]
+  "cSpell.words": ["tailwindcss", "reduxjs", "spangram"],
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import {
   resetCurrentWord,
+  resetGrid,
   setIsComplete,
   updateCorrectWords,
   updateCurrentWord,
@@ -45,6 +46,10 @@ const useGrid = () => {
     dispatch(setIsComplete());
   };
 
+  const resetGridHandler = () => {
+    dispatch(resetGrid());
+  };
+
   return {
     alphabets,
     column,
@@ -54,6 +59,7 @@ const useGrid = () => {
     isComplete,
     isMakingWord,
     resetCurrentWordHandler,
+    resetGridHandler,
     row,
     setIsCompleteHandler,
     updateCorrectWordsHandler,
